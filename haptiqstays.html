@@ -241,26 +241,16 @@
   .sticker:nth-child(6n+6){background:var(--purple);border-radius:16px;transform:rotate(5deg);}
   .sticker:hover{transform:rotate(0) scale(1.06);}
 
-  .scrapbook{display:flex;flex-wrap:wrap;gap:2.2rem 1.6rem;padding:1rem 1rem 2rem;justify-content:flex-start;}
-  .snap{width:168px;background:var(--card);padding:.5rem .5rem 1.8rem;box-shadow:5px 6px 0 var(--shadow);position:relative;transition:transform .25s ease,box-shadow .25s ease;cursor:default;}
-  .snap .pic{aspect-ratio:4/5;position:relative;overflow:hidden;}
-  .snap .pic::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.28),transparent 50%),radial-gradient(circle at 80% 85%,rgba(0,0,0,.25),transparent 55%);}
-  .snap figcaption{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--aubergine-950);text-align:center;margin-top:.65rem;line-height:1.4;}
-  .snap .tape{position:absolute;top:-.6rem;width:56px;height:22px;background:repeating-linear-gradient(45deg,rgba(246,239,228,.9),rgba(246,239,228,.9) 5px,rgba(200,190,180,.7) 5px,rgba(200,190,180,.7) 10px);opacity:.9;}
-  .snap:hover{transform:rotate(0deg) scale(1.05);box-shadow:8px 10px 0 var(--shadow);z-index:5;}
-  .snap:nth-child(1){transform:rotate(-6deg);} .snap:nth-child(1) .tape{left:-.8rem;transform:rotate(-40deg);}
-  .snap:nth-child(1) .pic{background:var(--yellow);}
-  .snap:nth-child(2){transform:rotate(4deg);margin-top:1.6rem;} .snap:nth-child(2) .tape{right:-.8rem;transform:rotate(40deg);}
-  .snap:nth-child(2) .pic{background:var(--pink);}
-  .snap:nth-child(3){transform:rotate(-3deg);} .snap:nth-child(3) .tape{left:50%;transform:translateX(-50%) rotate(-3deg);}
-  .snap:nth-child(3) .pic{background:var(--turquoise);}
-  .snap:nth-child(4){transform:rotate(6deg);margin-top:.8rem;} .snap:nth-child(4) .tape{left:-.8rem;transform:rotate(-40deg);}
-  .snap:nth-child(4) .pic{background:var(--orange);}
-  .snap:nth-child(5){transform:rotate(-5deg);} .snap:nth-child(5) .tape{right:-.8rem;transform:rotate(40deg);}
-  .snap:nth-child(5) .pic{background:var(--green);}
-  .snap:nth-child(6){transform:rotate(3deg);margin-top:1.6rem;} .snap:nth-child(6) .tape{left:50%;transform:translateX(-50%) rotate(-3deg);}
-  .snap:nth-child(6) .pic{background:var(--purple);}
-  @media (max-width:600px){ .snap{transform:none!important;margin-top:0!important;} .snap:hover{transform:scale(1.03)!important;} }
+  .carousel{display:flex;flex-direction:column;align-items:center;padding:1rem 0 1rem;}
+  .carousel-frame{background:var(--card);padding:.9rem .9rem 2.4rem;transform:rotate(-2deg);box-shadow:7px 9px 0 var(--shadow);position:relative;width:min(380px,100%);}
+  .carousel-pic{aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--aubergine-900);transition:opacity .3s ease;}
+  .carousel-pic img{width:100%;height:100%;object-fit:cover;}
+  .carousel-pic::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.2),transparent 50%),radial-gradient(circle at 80% 85%,rgba(0,0,0,.18),transparent 55%);pointer-events:none;}
+  .carousel-frame figcaption{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--aubergine-950);text-align:center;margin-top:.75rem;}
+  .carousel-tape{position:absolute;top:-.8rem;left:50%;transform:translateX(-50%) rotate(-4deg);width:80px;height:30px;background:repeating-linear-gradient(45deg,rgba(246,239,228,.9),rgba(246,239,228,.9) 5px,rgba(200,190,180,.7) 5px,rgba(200,190,180,.7) 10px);opacity:.9;}
+  .carousel-dots{display:flex;gap:.65rem;margin-top:1.7rem;}
+  .carousel-dots .dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--aubergine-950);background:transparent;padding:0;cursor:pointer;transition:background .2s ease,transform .2s ease;}
+  .carousel-dots .dot.active{background:var(--orange-ink);border-color:var(--orange-ink);transform:scale(1.25);}
 
   /* ---------- BOOK ---------- */
   .book{--accent:var(--orange-ink);}
@@ -418,13 +408,22 @@
       <span class="sticker">Private &amp; self-contained</span>
       <span class="sticker">Fremantle, WA</span>
     </div>
-    <div class="scrapbook">
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 01 — The Bedroom<br>(photo landing soon)</figcaption></figure>
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 02 — Creator Corner<br>(photo landing soon)</figcaption></figure>
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 03 — Living Space<br>(photo landing soon)</figcaption></figure>
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 04 — Neon Details<br>(photo landing soon)</figcaption></figure>
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 05 — Kitchen<br>(photo landing soon)</figcaption></figure>
-      <figure class="snap"><div class="tape"></div><div class="pic"></div><figcaption>Frame 06 — Bathroom<br>(photo landing soon)</figcaption></figure>
+    <div class="carousel" id="space-carousel">
+      <figure class="carousel-frame">
+        <div class="carousel-tape"></div>
+        <div class="carousel-pic">
+          <img id="carousel-img" src="1.jpg" alt="The Bedroom" onerror="this.style.display='none'">
+        </div>
+        <figcaption id="carousel-caption">Frame 01 — The Bedroom</figcaption>
+      </figure>
+      <div class="carousel-dots" id="carousel-dots">
+        <button class="dot active" type="button" aria-label="Show photo 1"></button>
+        <button class="dot" type="button" aria-label="Show photo 2"></button>
+        <button class="dot" type="button" aria-label="Show photo 3"></button>
+        <button class="dot" type="button" aria-label="Show photo 4"></button>
+        <button class="dot" type="button" aria-label="Show photo 5"></button>
+        <button class="dot" type="button" aria-label="Show photo 6"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -468,7 +467,7 @@
 <script>
   const CONFIG = {
     airbnbUrl: "",
-    calendlyUrl: "https://calendly.com/haptiqstudiostays/haptiq-studio-2-hours",
+    calendlyUrl: "https://calendly.com/haptiqstudiostays",
     contactEmail: "anita@anitacarr.com.au"
   };
 
@@ -489,6 +488,48 @@
     airbnbLink.style.pointerEvents = 'none';
     airbnbLink.innerHTML = 'LISTING<br>COMING SOON';
   }
+
+  const spaceSlides = [
+    { src: '1.jpg', room: 'The Bedroom' },
+    { src: '2.jpg', room: 'Creator Corner' },
+    { src: '3.jpg', room: 'Living Space' },
+    { src: '4.jpg', room: 'Neon Details' },
+    { src: '5.jpg', room: 'Kitchen' },
+    { src: '6.jpg', room: 'Bathroom' }
+  ];
+  let spaceIndex = 0;
+  const carouselPic = document.querySelector('.carousel-pic');
+  const carouselImg = document.getElementById('carousel-img');
+  const carouselCaption = document.getElementById('carousel-caption');
+  const carouselDots = document.querySelectorAll('#carousel-dots .dot');
+
+  function showSpaceSlide(i) {
+    spaceIndex = i;
+    const slide = spaceSlides[i];
+    carouselPic.style.opacity = '0';
+    setTimeout(() => {
+      carouselImg.style.display = '';
+      carouselImg.src = slide.src;
+      carouselImg.alt = slide.room;
+      carouselCaption.textContent = `Frame 0${i + 1} — ${slide.room}`;
+      carouselDots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+      carouselPic.style.opacity = '1';
+    }, 250);
+  }
+
+  let spaceTimer;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function startSpaceAuto() {
+    clearInterval(spaceTimer);
+    if (!reduceMotion) {
+      spaceTimer = setInterval(() => showSpaceSlide((spaceIndex + 1) % spaceSlides.length), 4500);
+    }
+  }
+  carouselDots.forEach((d, idx) => d.addEventListener('click', () => { showSpaceSlide(idx); startSpaceAuto(); }));
+  const spaceCarousel = document.getElementById('space-carousel');
+  spaceCarousel.addEventListener('mouseenter', () => clearInterval(spaceTimer));
+  spaceCarousel.addEventListener('mouseleave', startSpaceAuto);
+  startSpaceAuto();
 
   const calendlyBody = document.getElementById('calendly-body');
   if (CONFIG.calendlyUrl) {
