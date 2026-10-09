@@ -144,6 +144,8 @@
   .polaroid-link:hover .polaroid,.polaroid-link:focus-visible .polaroid{transform:rotate(0deg) scale(1.03);box-shadow:10px 12px 0 var(--shadow);}
   .polaroid .shot{aspect-ratio:1/1;background:linear-gradient(135deg,var(--pink),var(--purple));position:relative;overflow:hidden;}
   .polaroid .shot::after{content:"SHOT COMING SOON";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.06em;color:var(--aubergine-950);font-weight:500;}
+  .polaroid .shot.has-img::after{display:none;}
+  .polaroid .shot img{width:100%;height:100%;object-fit:cover;}
   .polaroid figcaption{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--aubergine-950);text-align:center;margin-top:.75rem;}
   .polaroid-cta{position:absolute;bottom:-.7rem;right:-.6rem;background:var(--turquoise);color:var(--aubergine-950);font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:500;padding:.4rem .8rem;border-radius:999px;transform:rotate(6deg);box-shadow:2px 3px 0 var(--shadow);white-space:nowrap;}
   .washi{position:absolute;top:-.8rem;left:50%;transform:translateX(-50%) rotate(-4deg);width:88px;height:32px;background:repeating-linear-gradient(45deg,var(--yellow),var(--yellow) 6px,#e6b40f 6px,#e6b40f 12px);opacity:.85;}
@@ -400,8 +402,8 @@
       <a href="#book" class="polaroid-link js-enquire" aria-label="Enquire about a stay or studio session">
         <figure class="polaroid">
           <div class="washi"></div>
-          <div class="shot"></div>
-          <figcaption>the studio, mid-build</figcaption>
+          <div class="shot has-img"><img src="../assets/photos/hero-living-room.jpg" alt="The Haptiq Stays living room"></div>
+          <figcaption>the living room, all six colours</figcaption>
           <span class="polaroid-cta">Tap to enquire →</span>
         </figure>
       </a>
@@ -488,12 +490,13 @@
     </div>
     <div class="carousel" id="space-carousel">
       <div class="carousel-stage" id="carousel-stage">
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="1.jpg" alt="The Bedroom" onerror="this.style.display='none'"></div><figcaption>Frame 01 — The Bedroom</figcaption></figure>
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="2.jpg" alt="Creator Corner" onerror="this.style.display='none'"></div><figcaption>Frame 02 — Creator Corner</figcaption></figure>
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="3.jpg" alt="Living Space" onerror="this.style.display='none'"></div><figcaption>Frame 03 — Living Space</figcaption></figure>
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="4.jpg" alt="Neon Details" onerror="this.style.display='none'"></div><figcaption>Frame 04 — Neon Details</figcaption></figure>
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="5.jpg" alt="Kitchen" onerror="this.style.display='none'"></div><figcaption>Frame 05 — Kitchen</figcaption></figure>
-        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="6.jpg" alt="Bathroom" onerror="this.style.display='none'"></div><figcaption>Frame 06 — Bathroom</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/bedroom.jpg" loading="lazy" alt="The Bedroom" onerror="this.style.display='none'"></div><figcaption>Frame 01 — The Bedroom</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/creator-corner.jpg" loading="lazy" alt="Creator Corner" onerror="this.style.display='none'"></div><figcaption>Frame 02 — Creator Corner</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/living-space.jpg" loading="lazy" alt="Living Space" onerror="this.style.display='none'"></div><figcaption>Frame 03 — Living Space</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/neon-details.jpg" loading="lazy" alt="Neon Details" onerror="this.style.display='none'"></div><figcaption>Frame 04 — Neon Details</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/kitchen.jpg" loading="lazy" alt="Kitchen" onerror="this.style.display='none'"></div><figcaption>Frame 05 — Kitchen</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/bathroom.jpg" loading="lazy" alt="Bathroom" onerror="this.style.display='none'"></div><figcaption>Frame 06 — Bathroom</figcaption></figure>
+        <figure class="carousel-slide"><div class="carousel-tape"></div><div class="carousel-pic"><img src="../assets/photos/sunroom.jpg" loading="lazy" alt="Sunroom" onerror="this.style.display='none'"></div><figcaption>Frame 07 — Sunroom</figcaption></figure>
       </div>
       <div class="carousel-dots" id="carousel-dots">
         <button class="dot" type="button" aria-label="Show photo 1"></button>
@@ -502,6 +505,7 @@
         <button class="dot" type="button" aria-label="Show photo 4"></button>
         <button class="dot" type="button" aria-label="Show photo 5"></button>
         <button class="dot" type="button" aria-label="Show photo 6"></button>
+        <button class="dot" type="button" aria-label="Show photo 7"></button>
       </div>
     </div>
   </div>
@@ -561,7 +565,7 @@
       <a href="mailto:anita@anitacarr.com.au">anita@anitacarr.com.au</a>
     </div>
   </div>
-  <p class="fine-print">Content-creator studio &amp; short-stay apartment. Photos and booking details landing soon.</p>
+  <p class="fine-print">Content-creator studio &amp; short-stay apartment. Booking details landing soon.</p>
 </footer>
 
 <script>
