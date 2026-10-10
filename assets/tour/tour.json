@@ -1,26 +1,24 @@
 {
-  "_help": "3D tour data. Paths are relative to this file. yaw = degrees left/right (0 = centre of the panorama). Links with `videos` play them (at videoSpeed) after turning to `startYaw`, then arrive facing `arriveYaw`.",
+  "_help": "3D tour data. Paths are relative to this file. yaw = degrees left/right (0 = centre of the panorama). Each link shows a button in the `from` room pointing at `yaw`; clicking it fades to the `to` room.",
   "start": "living",
   "buttonPitch": -8,
-  "videoSpeed": 2,
-  "videoHfov": 74,
   "rooms": {
-    "living":   { "name": "Living Room", "image": "panos/living-room.jpg", "thumb": "panos/living-room-thumb.jpg", "yaw": 0 },
-    "kitchen":  { "name": "Kitchen",     "image": "panos/kitchen.jpg",     "thumb": "panos/kitchen-thumb.jpg",     "yaw": 85 },
-    "sunroom":  { "name": "Sunroom",     "image": "panos/sunroom.jpg",     "thumb": "panos/sunroom-thumb.jpg",     "yaw": -94 },
-    "bedroom":  { "name": "Bedroom",     "image": "panos/bedroom.jpg",     "thumb": "panos/bedroom-thumb.jpg",     "yaw": 0 },
-    "bathroom": { "name": "Bathroom",    "image": "panos/bathroom.jpg",    "thumb": "panos/bathroom-thumb.jpg",    "yaw": 0 }
+    "living": {"name": "Living Room", "image": "panos/living-room.jpg", "thumb": "panos/living-room-thumb.jpg", "yaw": 0},
+    "kitchen": {"name": "Kitchen", "image": "panos/kitchen.jpg", "thumb": "panos/kitchen-thumb.jpg", "yaw": 85},
+    "sunroom": {"name": "Sunroom", "image": "panos/sunroom.jpg", "thumb": "panos/sunroom-thumb.jpg", "yaw": -94},
+    "bedroom": {"name": "Bedroom", "image": "panos/bedroom.jpg", "thumb": "panos/bedroom-thumb.jpg", "yaw": 0},
+    "bathroom": {"name": "Bathroom", "image": "panos/bathroom.jpg", "thumb": "panos/bathroom-thumb.jpg", "yaw": 0}
   },
   "links": [
-    { "from": "living",   "to": "kitchen",  "yaw": 85,   "videos": ["videos/living-to-kitchen.mp4"], "startYaw": 85, "arriveYaw": 85 },
-    { "from": "kitchen",  "to": "living",   "yaw": -70,  "videos": ["videos/kitchen-to-living.mp4"], "startYaw": 85, "arriveYaw": 85 },
-    { "from": "kitchen",  "to": "sunroom",  "yaw": -99,  "videos": ["videos/kitchen-to-sunroom.mp4"], "startYaw": 85, "arriveYaw": -94 },
-    { "from": "sunroom",  "to": "kitchen",  "yaw": 79,   "videos": ["videos/sunroom-to-kitchen.mp4"], "startYaw": -94, "arriveYaw": 85 },
-    { "from": "living",   "to": "sunroom",  "yaw": -99,  "videos": ["videos/living-to-kitchen.mp4", "videos/kitchen-to-sunroom.mp4"], "startYaw": 85, "arriveYaw": -94 },
-    { "from": "sunroom",  "to": "living",   "yaw": 36,   "videos": ["videos/sunroom-to-kitchen.mp4", "videos/kitchen-to-living.mp4"], "startYaw": -94, "arriveYaw": 85 },
-    { "from": "living",   "to": "bedroom",  "yaw": 135 },
-    { "from": "bedroom",  "to": "living",   "yaw": -58 },
-    { "from": "bedroom",  "to": "bathroom", "yaw": 53 },
-    { "from": "bathroom", "to": "bedroom",  "yaw": -162 }
+    {"from": "living", "to": "kitchen", "yaw": 85},
+    {"from": "kitchen", "to": "living", "yaw": -70},
+    {"from": "kitchen", "to": "sunroom", "yaw": -99},
+    {"from": "sunroom", "to": "kitchen", "yaw": 79},
+    {"from": "living", "to": "sunroom", "yaw": -99},
+    {"from": "sunroom", "to": "living", "yaw": 36},
+    {"from": "living", "to": "bedroom", "yaw": 135},
+    {"from": "bedroom", "to": "living", "yaw": -58},
+    {"from": "bedroom", "to": "bathroom", "yaw": 53},
+    {"from": "bathroom", "to": "bedroom", "yaw": -162}
   ]
 }
