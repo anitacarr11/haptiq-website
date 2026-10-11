@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAPTIQ Stays — 3D Tour</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ff4fa0'/%3E%3Crect x='16' y='14' width='10' height='36' rx='5' fill='%23ffffff'/%3E%3Crect x='38' y='14' width='10' height='36' rx='5' fill='%23ffffff'/%3E%3Crect x='16' y='27' width='32' height='10' rx='5' fill='%23ffffff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<style>
+  :root { --aubergine: #1a0a1d; --pink: #ff4fa0; --yellow: #f5c518; --turquoise: #29d9c8; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--aubergine); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  #pano { position: absolute; inset: 0; }
+
+  .badge { position: absolute; top: 14px; left: 14px; z-index: 5; text-decoration: none; color: #fff; background: rgba(26,10,29,.6);
+           backdrop-filter: blur(6px); padding: .5rem .9rem; border-radius: 999px; font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: .8rem; }
+  .badge span { color: var(--turquoise); }
+  .hint { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 5; pointer-events: none; white-space: nowrap;
+          font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: #fff;
+          background: rgba(26,10,29,.6); padding: .45rem .9rem; border-radius: 999px; transition: opacity .4s; }
+  @media (max-width: 640px) { .hint { top: 58px; } }
+  .fs { position: absolute; top: 12px; right: 12px; z-index: 5; width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
+        background: rgba(255,255,255,.92); color: var(--aubergine); font-size: 1.1rem; box-shadow: 0 3px 10px rgba(0,0,0,.3); }
+  .pnlm-controls-container { top: 60px !important; }
+
+  .rooms { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 5; display: flex; gap: .5rem;
+           max-width: calc(100% - 28px); overflow-x: auto; padding: .4rem; background: rgba(26,10,29,.55); border-radius: 14px; backdrop-filter: blur(6px); }
+  .rooms button { flex: none; width: 110px; border: 2px solid transparent; border-radius: 10px; padding: 0; overflow: hidden; background: #222;
+                  color: #fff; cursor: pointer; font-family: inherit; font-size: .74rem; font-weight: 700; }
+  .rooms button img { display: block; width: 100%; height: 56px; object-fit: cover; }
+  .rooms button span { display: block; padding: .25rem 0 .3rem; }
+  .rooms button.active { border-color: var(--yellow); }
+
+  .tour-btn { width: 0; height: 0; cursor: pointer; }
+  .tour-btn .b { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); display: flex; align-items: center; gap: .5rem; white-space: nowrap;
+                 padding: .6rem 1rem .6rem .7rem; border-radius: 999px; background: rgba(255,255,255,.94); color: var(--aubergine);
+                 font-family: 'Unbounded', sans-serif; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 16px rgba(0,0,0,.35); transition: transform .15s; }
+  .tour-btn .b i { font-style: normal; width: 24px; height: 24px; border-radius: 50%; background: var(--pink); color: #fff; display: grid; place-items: center; font-size: .72rem; }
+  .tour-btn:hover .b { transform: translate(-50%, -50%) scale(1.08); }
+
+  .error { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: .85rem; text-align: center; padding: 1rem; }
+</style>
+</head>
+<body>
+<div id="pano"></div>
+<a class="badge" href="../stays/">HAPTIQ <span>STAYS</span></a>
+<div class="hint" id="hint">Drag to look around · tap a button to move</div>
+<button class="fs" id="fs" type="button" aria-label="Fullscreen">⛶</button>
+<div class="rooms" id="rooms"></div>
+
+<script>
+// Full-screen 3D tour. All data comes from /assets/tour/tour.json (shared with the Stays page).
+(async function () {
+  const TOUR_URL = new URL("../assets/tour/tour.json", document.baseURI).href;
+  const roomsBar = document.getElementById("rooms");
+  const hint = document.getElementById("hint");
+  let T;
+  try {
+    T = await (await fetch(TOUR_URL, { cache: "no-cache" })).json();
+  } catch (e) {
+    document.body.insertAdjacentHTML("beforeend", '<div class="error">The 3D tour couldn\'t load right now.</div>');
+    return;
+  }
+  const abs = (p) => new URL(p, TOUR_URL).href;
+
+  // Open a specific room with ?room=kitchen (any room id from tour.json)
+  const wanted = new URLSearchParams(location.search).get("room");
+  const start = T.rooms[wanted] ? wanted : T.start;
+
+  const scenes = {};
+  for (const [id, r] of Object.entries(T.rooms)) {
+    scenes[id] = {
+      type: "equirectangular", panorama: abs(r.image), yaw: r.yaw, pitch: 0, hfov: 100,
+      hotSpots: T.links.filter(l => l.from === id).map(l => ({
+        pitch: T.buttonPitch, yaw: l.yaw, cssClass: "tour-btn",
+        createTooltipFunc: (div) => { div.innerHTML = `<div class="b"><i>➜</i>${T.rooms[l.to].name}</div>`; },
+        clickHandlerFunc: () => go(l.to),
+      })),
+    };
+  }
+  const viewer = pannellum.viewer("pano", {
+    default: { firstScene: start, sceneFadeDuration: 600, autoLoad: true, showControls: true, showFullscreenCtrl: false,
+               compass: false, mouseZoom: true, friction: 0.15 },
+    scenes,
+  });
+
+  function go(to) {
+    if (to === viewer.getScene()) return;
+    hint.style.opacity = 0;
+    viewer.loadScene(to);
+  }
+
+  for (const [id, r] of Object.entries(T.rooms)) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.dataset.id = id;
+    b.innerHTML = `<img src="${abs(r.thumb || r.image)}" alt=""><span>${r.name}</span>`;
+    b.onclick = () => go(id);
+    roomsBar.appendChild(b);
+  }
+  const markActive = () => {
+    const cur = viewer.getScene();
+    roomsBar.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.id === cur));
+    history.replaceState(null, "", cur === T.start ? location.pathname : `?room=${cur}`);
+  };
+  viewer.on("scenechange", markActive);
+  viewer.on("mousedown", () => (hint.style.opacity = 0));
+  viewer.on("touchstart", () => (hint.style.opacity = 0));
+  markActive();
+
+  document.getElementById("fs").onclick = () => {
+    const el = document.documentElement;
+    if (document.fullscreenElement) document.exitFullscreen();
+    else (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+  };
+})();
+</script>
+</body>
+</html>
