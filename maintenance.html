@@ -215,6 +215,15 @@
     .polaroid { transform: rotate(2deg); }
     .sticker { right: -8px; }
   }
+  @media (max-width: 480px) {
+    .page { padding: 48px 18px 64px; row-gap: 24px; }
+    .big { font-size: clamp(2.2rem, 10vw, 3rem); }
+    .under { letter-spacing: .2em; }
+    .actions { gap: 14px; }
+    .btn { padding: 14px 22px; font-size: .95rem; }
+    .polaroid { box-shadow: 8px 7px 0 #a9a6a6; }
+    .sticker { right: 0; font-size: .75rem; padding: 10px 16px; }
+  }
 </style>
 </head>
 <body>
