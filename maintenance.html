@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currently under maintenance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f9f5ee;
+    --ink: #1c1426;
+    --olive: #8a6419;
+    --magenta: #b82e75;
+    --teal: #2d6e66;
+    --rust: #a34520;
+    --green: #4f7f2a;
+    --purple: #6741cc;
+    --orange: #ee833f;
+    --mint: #6fd8c8;
+    --lilac: #9b6cf5;
+    --lime: #8fe05a;
+    --pink: #f0508f;
+    --tape: #f0cd5a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 32px 90px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: 56px;
+    row-gap: 36px;
+    align-content: center;
+    align-items: center;
+  }
+  .head { grid-column: 1 / -1; }
+
+  /* ---------- headline ---------- */
+  .tag {
+    display: inline-block;
+    background: var(--mint);
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: .85rem;
+    padding: 10px 18px;
+    transform: rotate(-4deg);
+    clip-path: polygon(0 6%, 4% 0, 97% 4%, 100% 40%, 98% 100%, 3% 94%);
+    margin-bottom: 30px;
+  }
+
+  .big {
+    font-family: "Bagel Fat One", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+    font-size: clamp(2.7rem, 10.6vw, 8.6rem);
+    line-height: .95;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+    margin-left: -4px;
+  }
+  .big span { display: inline-block; }
+  .big span:nth-child(1)  { color: var(--olive);   transform: rotate(-3deg); }
+  .big span:nth-child(2)  { color: var(--magenta); transform: rotate(5deg) translateY(4px); }
+  .big span:nth-child(3)  { color: var(--teal);    transform: rotate(-2deg) translateY(-6px); }
+  .big span:nth-child(4)  { color: var(--rust);    transform: rotate(3deg) translateY(2px); }
+  .big span:nth-child(5)  { color: var(--green);   transform: rotate(-4deg); }
+  .big span:nth-child(6)  { color: var(--purple);  transform: rotate(4deg) translateY(-4px); }
+  .big span:nth-child(7)  { color: var(--olive);   transform: rotate(-2deg) translateY(5px); }
+  .big span:nth-child(8)  { color: var(--magenta); transform: rotate(3deg) translateY(-3px); }
+  .big span:nth-child(9)  { color: var(--teal);    transform: rotate(-4deg); }
+  .big span:nth-child(10) { color: var(--rust);    transform: rotate(4deg) translateY(4px); }
+  .big span:nth-child(11) { color: var(--green);   transform: rotate(-3deg) translateY(-5px); }
+
+  .under {
+    font-family: "Bagel Fat One", "Trebuchet MS", sans-serif;
+    font-size: clamp(1rem, 2.6vw, 1.7rem);
+    letter-spacing: .32em;
+    color: #6b5a78;
+    display: inline-block;
+    transform: rotate(-3deg);
+    margin: 0 0 8px 8px;
+  }
+
+  /* ---------- copy ---------- */
+  h1 {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -.01em;
+    max-width: 28ch;
+  }
+  mark {
+    padding: 0 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  mark.one { background: var(--lilac); }
+  mark.two { background: var(--orange); }
+
+  .note {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 42ch;
+    color: #4a3d57;
+  }
+
+  .actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+  .btn {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 20px 34px;
+    color: var(--ink);
+  }
+  .btn.solid {
+    background: var(--orange);
+    transform: rotate(-2.5deg);
+    clip-path: polygon(0 4%, 40% 1%, 100% 0, 99% 48%, 100% 96%, 55% 100%, 2% 98%);
+  }
+  .btn.ghost {
+    background: #fff;
+    border: 2px solid #eadde6;
+    transform: rotate(1.5deg);
+  }
+
+  /* ---------- polaroid ---------- */
+  .stage { position: relative; display: flex; justify-content: center; padding: 26px 0; }
+  .polaroid {
+    position: relative;
+    width: min(100%, 400px);
+    background: #fff;
+    padding: 18px 18px 70px;
+    transform: rotate(3.5deg);
+    box-shadow: 12px 10px 0 #a9a6a6;
+  }
+  .polaroid::before {
+    content: "";
+    position: absolute;
+    top: -22px; left: 50%;
+    width: 130px; height: 40px;
+    transform: translateX(-30%) rotate(1deg);
+    background: repeating-linear-gradient(135deg, var(--tape) 0 10px, #e8be3e 10px 20px);
+  }
+  .photo {
+    aspect-ratio: 4 / 4.2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    overflow: hidden;
+  }
+  .photo div { position: relative; }
+  .photo .c1 { background: var(--magenta); }
+  .photo .c2 { background: var(--teal); }
+  .photo .c3 { background: var(--olive); }
+  .photo .c4 { background: var(--purple); }
+  .photo .c5 { background: var(--rust); }
+  .photo .c6 { background: var(--green); }
+  .photo .c1::after { content: ""; position: absolute; right: 16%; bottom: 16%; width: 34px; height: 34px; border-radius: 50%; background: var(--tape); }
+  .photo .c4::after { content: ""; position: absolute; left: 14%; top: 18%; width: 42px; height: 42px; border: 6px solid var(--mint); border-radius: 50%; }
+  .photo .c6::after { content: ""; position: absolute; right: 14%; top: 16%; border-left: 28px solid var(--pink); border-top: 17px solid transparent; border-bottom: 17px solid transparent; }
+  .photo .c2::after { content: ""; position: absolute; left: 14%; bottom: 18%; width: 50px; height: 10px; background: var(--cream); transform: rotate(-12deg); }
+
+  .caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 22px;
+    text-align: center;
+    font-family: "Space Mono", monospace;
+    font-size: .92rem;
+    transform: rotate(1deg);
+  }
+  .sticker {
+    position: absolute;
+    right: -26px; bottom: -22px;
+    background: var(--mint);
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: .85rem;
+    padding: 12px 22px;
+    border-radius: 999px;
+    transform: rotate(8deg);
+    box-shadow: 4px 5px 0 rgba(0,0,0,.18);
+  }
+
+  /* ---------- scattered shapes ---------- */
+  .shape { position: absolute; pointer-events: none; }
+  .dot  { width: 26px; height: 26px; border-radius: 50%; background: var(--lime); }
+  .ring { width: 48px; height: 48px; border-radius: 50%; border: 5px solid var(--pink); }
+  .tri  { width: 0; height: 0; border-left: 24px solid var(--lilac); border-top: 14px solid transparent; border-bottom: 14px solid transparent; }
+  .zig  { width: 90px; height: 28px; }
+  .s1 { top: 46px;  left: 52%; }
+  .s2 { top: 40px;  right: 100px; }
+  .s3 { top: 46px;  right: 14px; }
+  .s4 { bottom: 70px; left: 46%; }
+  .s5 { top: 58%; right: 4px; }
+  .s6 { bottom: 150px; right: 36px; }
+  .s7 { bottom: 28px; right: 130px; }
+
+  @media (max-width: 880px) {
+    .page { grid-template-columns: 1fr; padding: 60px 22px 80px; }
+    .s1, .s3, .s4, .s5 { display: none; }
+    .s2 { top: 22px; right: 22px; }
+    .polaroid { transform: rotate(2deg); }
+    .sticker { right: -8px; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="shape dot s1"></div>
+    <div class="shape ring s2"></div>
+    <svg class="shape zig s3" viewBox="0 0 90 28" fill="none" stroke="#2d6e66" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,22 16,6 28,22 40,6 52,22 64,6 76,22 86,6"/></svg>
+    <div class="shape tri s4"></div>
+    <svg class="shape zig s5" viewBox="0 0 90 28" fill="none" stroke="#8a6419" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(18deg)"><polyline points="4,22 16,6 28,22 40,6 52,22 64,6 76,22 86,6"/></svg>
+    <div class="shape dot s6"></div>
+    <div class="shape ring s7" style="border-color: var(--magenta)"></div>
+
+    <header class="head">
+      <div class="tag">Not online right now</div><br>
+      <div class="under">CURRENTLY UNDER</div>
+      <div class="big" aria-label="Maintenance">
+        <span>M</span><span>A</span><span>I</span><span>N</span><span>T</span><span>E</span><span>N</span><span>A</span><span>N</span><span>C</span><span>E</span>
+      </div>
+    </header>
+
+    <section>
+      <h1>We're fixing, tweaking and tidying things up. It'll be <mark class="one">back</mark> before you know it.</h1>
+      <p class="note">Nothing's broken, we're just making a few improvements behind the scenes. Check back a little later.</p>
+      <div class="actions">
+        <span class="btn solid">Back soon</span>
+        <span class="btn ghost">Thanks for waiting</span>
+      </div>
+    </section>
+
+    <aside class="stage">
+      <div class="polaroid">
+        <div class="photo">
+          <div class="c1"></div><div class="c2"></div>
+          <div class="c3"></div><div class="c4"></div>
+          <div class="c5"></div><div class="c6"></div>
+        </div>
+        <div class="caption">work in progress</div>
+        <div class="sticker">be right back</div>
+      </div>
+    </aside>
+
+  </div>
+</body>
+</html>
