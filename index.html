@@ -121,22 +121,31 @@
   .section-head .eyebrow{color:var(--pink-ink);}
   .section-head h2{font-size:clamp(1.4rem,3.4vw,2rem);}
 
-  .worlds{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;padding:1rem 0;}
-  .world{display:flex;flex-direction:column;align-items:center;gap:1.1rem;width:180px;text-decoration:none;color:inherit;}
-  .stamp{
-    width:150px;height:150px;border-radius:50%;border:3px dashed;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;font-family:'Unbounded',sans-serif;
-    transition:transform .2s ease,box-shadow .2s ease;box-shadow:5px 7px 0 var(--shadow);
+  .worlds{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:760px;margin:0 auto;padding:.5rem 0;}
+  .world{
+    position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;gap:2.2rem;
+    min-height:250px;padding:1.75rem;border-radius:24px;text-decoration:none;color:var(--aubergine-950);
+    box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 14px 34px -14px var(--shadow);
+    transition:transform .25s ease,box-shadow .25s ease;
   }
-  .stamp b{font-size:1.05rem;line-height:1.25;}
-  .stamp span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.05em;margin-top:.4rem;text-transform:uppercase;opacity:.85;}
-  .world.live .stamp{color:var(--aubergine-950);border-color:var(--aubergine-950);transform:rotate(-6deg);}
-  .world.live:hover .stamp{transform:rotate(0deg) scale(1.05);box-shadow:7px 9px 0 var(--shadow);}
-  .world.live.c-stays .stamp{background:var(--turquoise);}
-  .world.live.c-store .stamp{background:var(--yellow);}
-  .world.soon .stamp{color:var(--ink-muted);background:var(--card);border-color:var(--aubergine-700);transform:rotate(4deg);cursor:default;}
-  .world-caption{font-size:.85rem;color:var(--ink-muted);text-align:center;}
-  .world-caption b{color:var(--text);display:block;font-size:.95rem;margin-bottom:.2rem;}
+  .world::before,.world::after{content:"";position:absolute;border-radius:50%;z-index:-1;pointer-events:none;transition:transform .5s ease;}
+  .world::before{width:220px;height:220px;right:-70px;top:-80px;background:rgba(255,255,255,.28);}
+  .world::after{width:120px;height:120px;right:40px;bottom:-60px;background:rgba(255,255,255,.18);}
+  .world.c-stays{background:linear-gradient(135deg,#29d9c8 0%,#5fc9f0 48%,#a373ff 100%);}
+  .world.c-store{background:linear-gradient(135deg,#f5c518 0%,#ff9a3c 50%,#ff4fa0 100%);}
+  .world.live:hover,.world.live:focus-visible{transform:translateY(-6px);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 24px 44px -16px var(--shadow);}
+  .world.live:hover::before{transform:scale(1.15) translate(-10px,10px);}
+  .world.soon{background:var(--aubergine-900);color:var(--ink-muted);cursor:default;box-shadow:none;}
+  .world-kicker{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;opacity:.75;}
+  .world-title{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.4vw,1.9rem);line-height:1.1;margin:.5rem 0 .6rem;letter-spacing:-.01em;}
+  .world-desc{font-size:.92rem;line-height:1.5;max-width:22rem;margin:0;opacity:.85;}
+  .world-cta{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:999px;
+    background:var(--aubergine-950);color:#fff;font-weight:700;font-size:.85rem;letter-spacing:.01em;
+    transition:gap .25s ease;
+  }
+  .world.live:hover .world-cta{gap:.8rem;}
+  .world.soon .world-cta{background:transparent;color:var(--ink-muted);border:1.5px solid var(--aubergine-700);}
 
   footer{border-top:1px solid var(--aubergine-800);padding:2.5rem 0;}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;}
@@ -145,10 +154,7 @@
   .foot-meta a{text-decoration:underline;text-decoration-color:var(--aubergine-700);}
 
   @media (max-width:600px){
-    .worlds{gap:1.75rem;}
-    .world{width:min(180px,42vw);}
-    .stamp{width:min(150px,38vw);height:min(150px,38vw);}
-    .stamp b{font-size:clamp(.8rem,3.6vw,1.05rem);}
+    .world{min-height:220px;padding:1.5rem;}
     footer .wrap{flex-direction:column;text-align:center;}
     .foot-meta{text-align:center;}
   }
@@ -203,12 +209,20 @@
     </div>
     <div class="worlds">
       <a href="https://anitacarr11.github.io/haptiq-website/stays/" class="world live c-stays" data-world="stays" data-cta="Visit →" target="_blank" rel="noopener">
-        <div class="stamp"><b>HAPTIQ<br>STAYS</b><span>Visit →</span></div>
-        <div class="world-caption"><b>Stays</b>Short-stays &amp; content studios, starting in Fremantle, WA</div>
+        <div>
+          <span class="world-kicker">01 · Stays</span>
+          <h3 class="world-title">HAPTIQ Stays</h3>
+          <p class="world-desc">Short-stays &amp; content studios, starting in Fremantle, WA.</p>
+        </div>
+        <span class="world-cta">Visit →</span>
       </a>
       <a href="https://anitacarr11.github.io/haptiq-website/store/" class="world live c-store" data-world="store" data-cta="Shop →" target="_blank" rel="noopener">
-        <div class="stamp"><b>HAPTIQ<br>STORE</b><span>Shop →</span></div>
-        <div class="world-caption"><b>Store</b>Dopamine-designed goods, shipped anywhere</div>
+        <div>
+          <span class="world-kicker">02 · Store</span>
+          <h3 class="world-title">HAPTIQ Store</h3>
+          <p class="world-desc">Dopamine-designed goods, shipped anywhere.</p>
+        </div>
+        <span class="world-cta">Shop →</span>
       </a>
     </div>
   </div>
@@ -225,7 +239,7 @@
 
 <script>
   // Links for each world come from /links.txt (one URL per line).
-  // A URL containing "stays" or "store" goes to that world's stamp;
+  // A URL containing "stays" or "store" goes to that world's card;
   // worlds with no URL show "Coming soon". If links.txt can't load, the links above stay as they are.
   (async () => {
     let lines;
@@ -242,7 +256,7 @@
     }
     for (const card of cards) {
       const url = found[card.dataset.world];
-      const label = card.querySelector(".stamp span");
+      const label = card.querySelector(".world-cta");
       if (url) {
         card.href = url;
         card.target = "_blank";
