@@ -43,7 +43,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="HAPTIQ">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#faf6ee">
+<meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#140914" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Unbounded:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -51,6 +53,8 @@
     --paper:#faf6ee;
     --card:#ffffff;
     --aubergine-950:#1a0a1d;
+    --text:#1a0a1d;
+    --nav-bg:rgba(250,246,238,.9);
     --aubergine-900:#f3e4ea;
     --aubergine-800:#e8d5dc;
     --aubergine-700:#d9b8c3;
@@ -74,7 +78,7 @@
   html{scroll-behavior:smooth;}
   html,body{overflow-x:hidden;max-width:100%;}
   body{
-    margin:0;background:var(--paper);color:var(--aubergine-950);
+    margin:0;background:var(--paper);color:var(--text);
     font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.5;
     -webkit-font-smoothing:antialiased;
   }
@@ -89,11 +93,11 @@
   @keyframes bob{0%,100%{transform:translate(0,0) rotate(var(--r,0deg));}50%{transform:translate(var(--dx,0px),-12px) rotate(calc(var(--r,0deg) + 12deg));}}
   @media (prefers-reduced-motion:reduce){ .doodle{animation:none;} }
 
-  .nav{position:sticky;top:0;z-index:10;background:rgba(250,246,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--aubergine-800);}
+  .nav{position:sticky;top:0;z-index:10;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--aubergine-800);}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:.9rem;padding-bottom:.9rem;}
   .nav-mark{font-family:'Unbounded',sans-serif;font-weight:800;font-size:1.05rem;}
   .nav a.plain{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--ink-muted);}
-  .nav a.plain:hover{color:var(--aubergine-950);}
+  .nav a.plain:hover{color:var(--text);}
 
   .hero{padding:clamp(4rem,10vw,6.5rem) 0 clamp(3rem,7vw,4.5rem);position:relative;text-align:center;}
   .eyebrow{
@@ -110,7 +114,7 @@
   .wordmark .t{color:var(--orange-ink);}
   .wordmark .i{color:var(--green-ink);}
   .wordmark .q{color:var(--purple-ink);}
-  .thesis{max-width:34rem;margin:2rem auto 0;font-size:clamp(1.02rem,2vw,1.2rem);color:var(--aubergine-950);}
+  .thesis{max-width:34rem;margin:2rem auto 0;font-size:clamp(1.02rem,2vw,1.2rem);color:var(--text);}
   .thesis-sub{max-width:32rem;margin:1rem auto 0;font-size:.95rem;color:var(--ink-muted);}
 
   section{padding:clamp(2.5rem,6vw,4rem) 0;}
@@ -133,7 +137,7 @@
   .world.live.c-store .stamp{background:var(--yellow);}
   .world.soon .stamp{color:var(--ink-muted);background:var(--card);border-color:var(--aubergine-700);transform:rotate(4deg);cursor:default;}
   .world-caption{font-size:.85rem;color:var(--ink-muted);text-align:center;}
-  .world-caption b{color:var(--aubergine-950);display:block;font-size:.95rem;margin-bottom:.2rem;}
+  .world-caption b{color:var(--text);display:block;font-size:.95rem;margin-bottom:.2rem;}
 
   footer{border-top:1px solid var(--aubergine-800);padding:2.5rem 0;}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;}
@@ -148,6 +152,27 @@
     .stamp b{font-size:clamp(.8rem,3.6vw,1.05rem);}
     footer .wrap{flex-direction:column;text-align:center;}
     .foot-meta{text-align:center;}
+  }
+  /* ---------- DARK MODE (follows the device setting) ---------- */
+  @media (prefers-color-scheme:dark){
+  :root{
+    --paper:#140914;
+    --text:#f7edf2;
+    --nav-bg:rgba(20,9,20,.86);
+    --aubergine-900:#2a1530;
+    --aubergine-800:#3b2342;
+    --aubergine-700:#5e4066;
+    --ink-muted:#c9b2c3;
+    --yellow-ink:#f7cf3a;
+    --pink-ink:#ff6fb3;
+    --turquoise-ink:#3fe3d2;
+    --orange-ink:#ff9455;
+    --green-ink:#93e86a;
+    --purple-ink:#b996ff;
+    --shadow:rgba(0,0,0,.6);
+    --creators-tint:#3a2120;
+    --sensory-tint:#2a2140;
+  }
   }
 </style>
 </head>

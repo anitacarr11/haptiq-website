@@ -13,7 +13,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="HAPTIQ">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#faf6ee">
+<meta name="theme-color" content="#f9f5ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#140914" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -33,6 +35,10 @@
     --lime: #8fe05a;
     --pink: #f0508f;
     --tape: #f0cd5a;
+    --dark: #1c1426;
+    --note: #4a3d57;
+    --under: #6b5a78;
+    --print-shadow: #a9a6a6;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -96,7 +102,7 @@
     font-family: "Bagel Fat One", "Trebuchet MS", sans-serif;
     font-size: clamp(1rem, 2.6vw, 1.7rem);
     letter-spacing: .32em;
-    color: #6b5a78;
+    color: var(--under);
     display: inline-block;
     transform: rotate(-3deg);
     margin: 0 0 8px 8px;
@@ -124,7 +130,7 @@
     font-size: 1.05rem;
     line-height: 1.6;
     max-width: 42ch;
-    color: #4a3d57;
+    color: var(--note);
   }
 
   .actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
@@ -154,7 +160,7 @@
     background: #fff;
     padding: 18px 18px 70px;
     transform: rotate(3.5deg);
-    box-shadow: 12px 10px 0 #a9a6a6;
+    box-shadow: 12px 10px 0 var(--print-shadow);
   }
   .polaroid::before {
     content: "";
@@ -231,8 +237,26 @@
     .under { letter-spacing: .2em; }
     .actions { gap: 14px; }
     .btn { padding: 14px 22px; font-size: .95rem; }
-    .polaroid { box-shadow: 8px 7px 0 #a9a6a6; }
+    .polaroid { box-shadow: 8px 7px 0 var(--print-shadow); }
     .sticker { right: 0; font-size: .75rem; padding: 10px 16px; }
+  }
+  /* ---------- DARK MODE (follows the device setting) ---------- */
+  mark, .btn, .polaroid, .sticker, .tag { color: var(--dark); }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --cream: #140914;
+      --ink: #f7edf2;
+      --olive: #f7cf3a;
+      --magenta: #ff6fb3;
+      --teal: #3fe3d2;
+      --rust: #ff9455;
+      --green: #93e86a;
+      --purple: #b996ff;
+      --note: #c9b2c3;
+      --under: #c9b2c3;
+      --print-shadow: #000;
+    }
+    .btn.ghost { border-color: #3b2342; }
   }
 </style>
 </head>
