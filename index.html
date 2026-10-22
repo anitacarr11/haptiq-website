@@ -116,6 +116,7 @@
   .wordmark .q{color:var(--purple-ink);}
   .thesis-sub{max-width:32rem;margin:2rem auto 0;font-size:.95rem;color:var(--ink-muted);}
 
+  section,header{scroll-margin-top:70px;}
   section{padding:clamp(2.5rem,6vw,4rem) 0;}
   .section-head{text-align:center;margin-bottom:2.6rem;}
   .section-head .eyebrow{color:var(--pink-ink);}
@@ -270,6 +271,24 @@
       }
     }
   })();
+</script>
+<script>
+  // In-page links (e.g. Book, The Space) scroll smoothly without adding #section to the address bar.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    const id = a && a.getAttribute("href");
+    if (!id || id.length < 2 || id[0] !== "#") return;
+    const target = document.getElementById(id.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  // A shared link like /stays/#tour still lands on that section, then the address is tidied.
+  if (location.hash) {
+    const start = document.getElementById(location.hash.slice(1));
+    history.replaceState(null, "", location.pathname + location.search);
+    if (start) addEventListener("load", () => start.scrollIntoView({ block: "start" }));
+  }
 </script>
 </body>
 </html>
