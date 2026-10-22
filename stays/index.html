@@ -319,7 +319,7 @@
   .tour-error{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.8rem;text-align:center;padding:1rem;}
 
   /* ---------- BOOK ---------- */
-  .book{--accent:var(--orange-ink);}
+  .book{--accent:var(--orange-ink);scroll-margin-top:70px;}
   .book-grid{display:grid;grid-template-columns:1.6fr .7fr;gap:2.5rem;align-items:start;}
   @media (max-width:820px){ .book-grid{grid-template-columns:1fr;} }
 
@@ -394,7 +394,7 @@
       <a href="#who" class="plain">Who It's For</a>
       <a href="#space" class="plain">The Space</a>
       <a href="#tour" class="plain">3D Tour</a>
-      <a href="https://calendly.com/haptiqstudiostays/haptiq-booking-request" target="_blank" rel="noopener" class="btn btn-primary btn-blob small js-book">Book</a>
+      <a href="#book" class="btn btn-primary btn-blob small js-book">Book</a>
     </div>
   </div>
 </nav>
@@ -424,11 +424,11 @@
       <div>
         <p class="thesis">A one-bedroom stay built for two kinds of guest: the ones who need to <span class="hl hl-purple">rest</span>, and the ones who need to <span class="hl hl-orange">shoot</span>. Not an Airbnb with nice lighting bolted on — a short-stay and a content studio, designed as one thing from the start.</p>
         <div class="hero-ctas">
-          <a href="https://calendly.com/haptiqstudiostays/haptiq-booking-request" target="_blank" rel="noopener" class="btn btn-primary btn-blob js-book">Book now</a>
+          <a href="#book" class="btn btn-primary btn-blob js-book">Book now</a>
           <a href="#space" class="btn btn-ghost btn-blob">See the space</a>
         </div>
       </div>
-      <a href="https://calendly.com/haptiqstudiostays/haptiq-booking-request" target="_blank" rel="noopener" class="polaroid-link js-book" aria-label="Book a stay or studio session">
+      <a href="#book" class="polaroid-link js-book" aria-label="Book a stay or studio session">
         <figure class="polaroid">
           <div class="washi"></div>
           <div class="shot has-img"><img src="../assets/photos/hero-living-room.jpg" alt="The Haptiq Stays living room"></div>
@@ -644,11 +644,6 @@
   spaceCarousel.addEventListener('mouseleave', startSpaceAuto);
   renderCarousel();
   startSpaceAuto();
-
-  document.querySelectorAll('.js-book').forEach(a => {
-    if (CONFIG.calendlyUrl) a.href = CONFIG.calendlyUrl;
-    else { a.href = '#book'; a.removeAttribute('target'); }
-  });
 
   const calendlyDirectLink = document.getElementById('calendly-direct-link');
   if (CONFIG.calendlyUrl) {
