@@ -328,8 +328,6 @@
   .book-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:500;color:var(--orange-ink);margin-bottom:.9rem;display:block;}
   .calendly-direct{display:block;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--ink-muted);margin-top:.9rem;text-decoration:underline;text-decoration-color:var(--aubergine-700);}
   .calendly-direct:hover{color:var(--text);}
-  .other-durations{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--ink-muted);margin-top:.5rem;}
-  .other-durations a{color:var(--orange-ink);font-weight:500;text-decoration:underline;text-decoration-color:var(--aubergine-700);}
   .stamp-btn{
     width:190px;height:190px;border-radius:50%;border:3px dashed var(--aubergine-950);background:var(--orange);
     display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
@@ -560,15 +558,12 @@
     </div>
     <div class="book-grid">
       <div class="ticket-col">
-        <span class="book-label">Studio Sessions — 2hr &amp; Half-Day</span>
+        <span class="book-label">Booking Request</span>
         <div class="ticket">
           <div class="ticket-perf"></div>
           <div class="ticket-body" id="calendly-body"></div>
         </div>
         <a id="calendly-direct-link" href="#" target="_blank" rel="noopener" class="calendly-direct">Trouble booking above? Open Calendly directly ↗</a>
-        <div class="other-durations">
-          Longer session? <a href="https://calendly.com/haptiqstudiostays/haptiq-studio-half-day-4-hours-clone" target="_blank" rel="noopener">Book the half-day (4hr) →</a>
-        </div>
       </div>
       <div class="stamp-cta">
         <span class="book-label">Overnight Stay</span>
@@ -664,14 +659,14 @@
 
   const calendlyBody = document.getElementById('calendly-body');
   if (CONFIG.calendlyUrl) {
-    calendlyBody.innerHTML = '<div class="ticket-tab">Studio session · Fremantle, WA</div>';
+    calendlyBody.innerHTML = '<div class="ticket-tab">Booking request · Fremantle, WA</div>';
     const iframe = document.createElement('iframe');
     iframe.src = CONFIG.calendlyUrl;
     iframe.title = 'Book via Calendly';
     calendlyBody.appendChild(iframe);
   } else {
     calendlyBody.innerHTML = `
-      <div class="ticket-tab">Studio session · Fremantle, WA</div>
+      <div class="ticket-tab">Booking request · Fremantle, WA</div>
       <div class="ticket-empty">
         <h3>Calendar's still warming up</h3>
         <p>Booking isn't wired up yet — email us and we'll pencil you in by hand.</p>
