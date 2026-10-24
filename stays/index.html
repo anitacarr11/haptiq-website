@@ -209,8 +209,7 @@
 
   /* ---------- BOOK ---------- */
   .book{--accent:var(--pink-ink);}
-  .book-grid{display:grid;grid-template-columns:1.6fr .7fr;gap:2rem;align-items:start;}
-  @media (max-width:860px){ .book-grid{grid-template-columns:1fr;} }
+  .book-grid{max-width:900px;}
   .book-label{font-family:'League Spartan',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:.8rem;display:block;}
   .ticket{background:var(--card);color:var(--aubergine-950);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(26,10,29,.5);border:1px solid var(--line);}
   .ticket::before{content:"";display:block;height:8px;background:var(--stripe);}
@@ -221,14 +220,7 @@
   .ticket-empty p{color:#5f4d5a;font-size:.95rem;margin:0 0 1.3rem;}
   .calendly-direct{display:inline-block;font-size:.85rem;color:var(--muted);margin-top:.9rem;text-decoration:underline;text-underline-offset:3px;}
   .calendly-direct:hover{color:var(--text);}
-  .side-col{display:flex;flex-direction:column;}
-  .airbnb-card{display:flex;flex-direction:column;justify-content:space-between;gap:2rem;min-height:200px;padding:1.6rem;border-radius:24px;text-decoration:none;color:var(--aubergine-950);
                background-color:var(--coral);background-image:var(--brick);background-size:64px 32px;transition:transform .2s ease;}
-  .airbnb-card:hover{transform:translateY(-3px);}
-  .airbnb-card b{font-family:'League Spartan',sans-serif;font-size:1.7rem;line-height:1.05;}
-  .airbnb-card span{font-family:'League Spartan',sans-serif;font-weight:700;align-self:flex-start;background:var(--aubergine-950);color:#fff;padding:.55rem 1rem .45rem;border-radius:999px;font-size:.9rem;}
-  .airbnb-card[aria-disabled="true"]{background-color:var(--soft);background-image:none;color:var(--muted);cursor:default;border:1.5px dashed var(--line);}
-  .airbnb-card[aria-disabled="true"] span{background:transparent;color:var(--muted);border:1.5px solid var(--line);}
   @media (max-width:600px){
     .ticket-body{padding:.7rem;min-height:620px;} .ticket-body iframe{min-height:570px;}
     .tour-frame{height:min(62vh,520px);min-height:320px;}
@@ -413,10 +405,6 @@
         </div>
         <a id="calendly-direct-link" href="#" target="_blank" rel="noopener" class="calendly-direct">Trouble booking above? Open Calendly directly ↗</a>
       </div>
-      <div class="side-col">
-        <span class="book-label">Overnight Stay</span>
-        <a id="airbnb-link" href="#" class="airbnb-card" target="_blank" rel="noopener"><b>View on<br>Airbnb</b><span>Open listing ↗</span></a>
-      </div>
     </div>
   </div>
 </section>
@@ -434,20 +422,9 @@
 
 <script>
   const CONFIG = {
-    airbnbUrl: "",
     calendlyUrl: "https://calendly.com/haptiqstudiostays/haptiq-booking-request",
     contactEmail: "anita@anitacarr.com.au"
   };
-
-  const airbnbLink = document.getElementById('airbnb-link');
-  if (CONFIG.airbnbUrl) {
-    airbnbLink.href = CONFIG.airbnbUrl;
-  } else {
-    airbnbLink.removeAttribute('href');
-    airbnbLink.setAttribute('aria-disabled', 'true');
-    airbnbLink.style.pointerEvents = 'none';
-    airbnbLink.innerHTML = '<b>Airbnb listing<br>coming soon</b><span>Stay tuned</span>';
-  }
 
   const carouselStage = document.getElementById('carousel-stage');
   const carouselSlideEls = [...carouselStage.querySelectorAll('.carousel-slide')];
