@@ -104,16 +104,11 @@
     font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;
     font-size:.72rem;font-weight:500;color:var(--turquoise-ink);display:inline-block;margin-bottom:1.6rem;
   }
+  .wordmark img{display:block;width:min(560px,84vw);height:auto;margin:0 auto;}
   .wordmark{
     font-family:'Bagel Fat One',cursive;font-size:clamp(3.6rem,13vw,7.5rem);line-height:.9;
     display:flex;justify-content:center;flex-wrap:wrap;letter-spacing:.01em;
   }
-  .wordmark .h{color:var(--yellow-ink);}
-  .wordmark .a{color:var(--pink-ink);}
-  .wordmark .p{color:var(--turquoise-ink);}
-  .wordmark .t{color:var(--orange-ink);}
-  .wordmark .i{color:var(--green-ink);}
-  .wordmark .q{color:var(--purple-ink);}
   .thesis-sub{max-width:32rem;margin:2rem auto 0;font-size:.95rem;color:var(--ink-muted);}
 
   section,header{scroll-margin-top:70px;}
@@ -154,6 +149,7 @@
   .foot-meta a{text-decoration:underline;text-decoration-color:var(--aubergine-700);}
 
   @media (max-width:600px){
+    .hero .doodle{display:none;}
     .world{min-height:220px;padding:1.5rem;}
     footer .wrap{flex-direction:column;text-align:center;}
     .foot-meta{text-align:center;}
@@ -194,9 +190,7 @@
   <div class="wrap">
     <span class="doodle ring" style="width:22px;height:22px;color:var(--pink);top:10px;left:8%;--r:0deg;--dur:6.5s;"></span>
     <span class="doodle dot" style="width:12px;height:12px;background:var(--green);top:15px;right:3%;--r:0deg;--dur:5.8s;--delay:.6s;"></span>
-    <h1 class="wordmark">
-      <span class="h">H</span><span class="a">A</span><span class="p">P</span><span class="t">T</span><span class="i">I</span><span class="q">Q</span>
-    </h1>
+    <h1 class="wordmark"><img src="assets/brand/haptiq-logo.png" alt="HAPTIQ" width="1400" height="297"></h1>
     <p class="thesis-sub">HAPTIQ designs dopamine-driven spaces and experiences — every property and product we make starts from the same question: how should this actually feel? Pick a world below.</p>
   </div>
 </header>
