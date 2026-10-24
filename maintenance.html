@@ -18,7 +18,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #f9f5ee;
@@ -258,18 +258,41 @@
     }
     .btn.ghost { border-color: #3b2342; }
   }
+  /* ---------- Unit-inspired restyle: logo colours, painted brick, floor tiles ---------- */
+  :root{
+    --brick:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='32'><g fill='none' stroke-width='2'><path stroke='white' stroke-opacity='.22' d='M0 1H64M0 17H64M1 1V17M33 17V33'/><path stroke='black' stroke-opacity='.06' d='M0 3H64M0 19H64M3 3V17M35 19V33'/></g></svg>");
+    --tile:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' fill='%23161016'/><g fill='%23fbf7f0'><circle r='16'/><circle cx='40' r='16'/><circle cy='40' r='16'/><circle cx='40' cy='40' r='16'/><circle cx='20' cy='20' r='5'/></g></svg>");
+  }
+  .tag{font-family:"League Spartan",sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;transform:none;clip-path:none;border-radius:999px;background:#10c1b5;padding:.55rem 1rem .45rem;}
+  .under{font-family:"League Spartan",sans-serif;font-weight:700;transform:none;letter-spacing:.45em;margin:0 0 6px 2px;}
+  .big{font-family:"League Spartan",sans-serif;font-weight:800;letter-spacing:-.02em;line-height:.9;margin-left:0;}
+  .big span{transform:none!important;}
+  .big span:nth-child(6n+1){color:#ff760b!important;}
+  .big span:nth-child(6n+2){color:#10c1b5!important;}
+  .big span:nth-child(6n+3){color:#fcc500!important;}
+  .big span:nth-child(6n+4){color:#2fb24a!important;}
+  .big span:nth-child(6n+5){color:#8f3cf8!important;}
+  .big span:nth-child(6n+6){color:#ff3d8b!important;}
+  h1{font-weight:600;}
+  mark.one{background:#10c1b5;} mark.two{background:#fcc500;}
+  .btn{font-family:"League Spartan",sans-serif;border-radius:999px;transform:none!important;clip-path:none!important;padding:16px 28px 13px;}
+  .btn.solid{background:#ff3d8b;}
+  .btn.ghost{background:transparent;border:2px solid var(--ink);color:var(--ink);}
+  .polaroid{transform:none!important;border-radius:26px;padding:12px;box-shadow:0 30px 60px -34px rgba(26,10,29,.45);}
+  .polaroid::before{display:none;}
+  .photo{border-radius:18px;}
+  .photo > div{background-image:var(--brick)!important;background-size:64px 32px!important;}
+  .photo .c1{background-color:#ff3d8b;} .photo .c2{background-color:#10c1b5;} .photo .c3{background-color:#fcc500;}
+  .photo .c4{background-color:#2fb24a;} .photo .c5{background-color:#f0604a;} .photo .c6{background-color:#8f3cf8;}
+  .photo div::after{display:none;}
+  .caption{position:static;font-family:"League Spartan",sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;transform:none;padding:16px 0 6px;color:#1a0a1d;}
+  .sticker{font-family:"League Spartan",sans-serif;font-weight:700;transform:none;background:#fcc500;border-radius:999px;box-shadow:none;right:16px;bottom:-18px;}
+  .tile-strip{height:20px;background:var(--tile);background-size:20px 20px;}
+  @media (prefers-color-scheme: dark){ .btn.ghost{border-color:var(--ink);color:var(--ink);background:transparent;} }
 </style>
 </head>
 <body>
   <div class="page">
-
-    <div class="shape dot s1"></div>
-    <div class="shape ring s2"></div>
-    <svg class="shape zig s3" viewBox="0 0 90 28" fill="none" stroke="#2d6e66" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,22 16,6 28,22 40,6 52,22 64,6 76,22 86,6"/></svg>
-    <div class="shape tri s4"></div>
-    <svg class="shape zig s5" viewBox="0 0 90 28" fill="none" stroke="#8a6419" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(18deg)"><polyline points="4,22 16,6 28,22 40,6 52,22 64,6 76,22 86,6"/></svg>
-    <div class="shape dot s6"></div>
-    <div class="shape ring s7" style="border-color: var(--magenta)"></div>
 
     <header class="head">
       <div class="tag">Not online right now</div><br>
@@ -301,5 +324,6 @@
     </aside>
 
   </div>
+  <div class="tile-strip" aria-hidden="true"></div>
 </body>
 </html>
